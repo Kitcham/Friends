@@ -31,8 +31,8 @@ jobs:
         pip install setuptools wheel twine
         pip install pyyaml
     
-    # Run generate.py
-   - name: Generate  
+    # Run pyhton script
+   - name: Generation  
       run: | 
         python generate.py
         echo `date +"%Y-%m-%d %H:%M:%S"` updated > update.log
