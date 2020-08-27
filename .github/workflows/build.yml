@@ -48,3 +48,23 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  FTP-Deploy:
+    needs: YML2JSON
+    
+    name: FTP-Deploy-Action
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2.1.0
+      with:
+        fetch-depth: 2
+
+    - name: FTP-Deploy-Action
+      # get ftp account info
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        ftp-server: ${{ secrets.FTP_ADDRESS }}
+        ftp-username: ${{ secrets.FTP_ACCOUNT }}
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
