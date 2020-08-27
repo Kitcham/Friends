@@ -43,7 +43,7 @@ jobs:
         git config --global user.email tjj386@qq.com
         git config --global user.name Kitcham
         git add .
-        git commit -m "Update YML and generate JSON successfully" -a
+        git commit -m "feat(json): update YML and generate JSON successfully" -a
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
