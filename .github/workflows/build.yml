@@ -32,9 +32,9 @@ jobs:
         pip install pyyaml
     
     # Pyhton script
-    - name: Generation links.json
+    - name: Generation
       run: | 
-        python generate.py
+        python generate.py links.json
         echo `date +"%Y-%m-%d %H:%M:%S"` updated > update.log
 
     - name: Upload result for YML2JSON
