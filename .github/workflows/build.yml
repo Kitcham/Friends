@@ -1,4 +1,4 @@
-name: Deploy Kitcham's Friends Json
+name: Deploy Kitcham's Friends
 
 on:
   # Trigger action when push and push-request
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2.1.0
+    - uses: actions/checkout@v2
     
     # Set up python
     - name: Set up Python
@@ -34,8 +34,13 @@ jobs:
     # Pyhton script
     - name: Generation  
       run: | 
-        python generate.py
+        python generate.py links.json
         echo `date +"%Y-%m-%d %H:%M:%S"` updated > update.log
+    - name: Upload result for YML2JSON
+      uses: actions/upload-artifact@v2
+      with:
+        name: Transfer
+        path: links.json
 
     # Commit json into repo
     - name: Commit
@@ -48,3 +53,29 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  FTP-Deploy:
+    needs: YML2JSON
+    
+    name: FTP-Deploy-Action
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2.1.0
+      with:
+        fetch-depth: 2
+    
+    - name: Download result for YML2JSON
+      uses: actions/download-artifact@v2
+      with:
+        name: Transfer
+
+    - name: FTP-Deploy-Action
+      # get ftp account info
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        ftp-server: ${{ secrets.FTP_ADDRESS }}
+        ftp-username: ${{ secrets.FTP_ACCOUNT }}
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: links/
