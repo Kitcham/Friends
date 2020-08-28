@@ -34,7 +34,7 @@ jobs:
     # Pyhton script
     - name: Generation
       run: | 
-        python generate.py links.json
+        python generate.py
         echo `date +"%Y-%m-%d %H:%M:%S"` released > build.log
 
     # Commit json into repo
