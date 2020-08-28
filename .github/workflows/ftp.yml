@@ -1,9 +1,9 @@
-name: Upload
+name: UploadJson
 
 on:
   # Trigger action when push and push-request
   workflow_run:
-    workflows: ["Deploy"]
+    workflows: ["ReleaseJson"]
     branches:  
       - master
     types: 
@@ -31,15 +31,18 @@ jobs:
     # Log script
     - name: Log 
       run: | 
-        echo `date +"%Y-%m-%d %H:%M:%S"` updated > ftp.log
+        echo `date +"%Y-%m-%d %H:%M:%S"` uploaded > ftp.log
 
     # Commit log into repo
     - name: Commit
+      env:
+        USER_EMAIL = ${{ secrets.USER_EMAIL }}
+        USER_NAME = ${{ secrets.USER_NAME }}
       run: |
-        git config --global user.email tjj386@qq.com
-        git config --global user.name Kitcham
+        git config --global user.email $USER_EMAIL
+        git config --global user.name $USER_NAME
         git add .
-        git commit -m "feat(log): update FTP log successfully" -a
+        git commit -m "links(json): upload json via FTP successfully" -a
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
