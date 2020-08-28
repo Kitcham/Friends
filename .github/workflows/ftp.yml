@@ -2,17 +2,7 @@ name: Upload Kitcham's Friends Json
 
 on:
   # Trigger action when push and push-request
-  push: 
-    branches:
-      - master
-    paths:
-      - '**.json'
-  
-  pull_request:
-    branches:
-      - master
-    paths:
-      - '**.json'
+  page_build
 
 jobs:
   FTP-DEPLOY:
