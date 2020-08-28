@@ -32,10 +32,16 @@ jobs:
         pip install pyyaml
     
     # Pyhton script
-    - name: Generation  
+    - name: Generation links.json
       run: | 
         python generate.py
         echo `date +"%Y-%m-%d %H:%M:%S"` updated > update.log
+
+    - name: Upload result for YML2JSON
+      uses: actions/upload-artifact@v2
+      with:
+        name: links.json
+        path: links.json
 
     # Commit json into repo
     - name: Commit
