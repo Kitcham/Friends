@@ -6,13 +6,13 @@ on:
     branches:
       - master
     paths:
-      - 'links/*'
+      - '**.json'
   
   pull_request:
     branches:
       - master
     paths:
-      - 'links/*'
+      - '**.json'
 
 jobs:
   FTP-DEPLOY:
