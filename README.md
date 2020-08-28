@@ -15,7 +15,7 @@
 那么如何操作呢？
 
 - 先将本站信息加入贵站友链
-    - 网站名称：`无垠的有底洞`
+    - 网站名称：`Kitcham 的归墟`
     - 网站地址：`https://blog.uiharu.top/`
     - 网站图标：`https://cdn.uiharu.top/blog/home/img/avatar-link.png`
     - Gravatar：`https://gravatar.loli.net/avatar/55c5609dea7dccada762393f19dfb6c0?s=200`
@@ -38,4 +38,4 @@
 
 ## 大功告成
 
-当你看到这句话时，你已经~~完成了50%了~~全部完成了！
+当你看到这句话时，你已经~~完成了50%了~~成为我膜拜的奆佬之一啦！
