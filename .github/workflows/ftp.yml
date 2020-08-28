@@ -1,4 +1,4 @@
-name: Deploy Kitcham's Friends
+name: Upload Kitcham's Friends Json
 
 on:
   # Trigger action when push and push-request
