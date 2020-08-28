@@ -1,0 +1,49 @@
+name: Upload Kitcham's Friends Json
+
+on:
+  # Trigger action when push and push-request
+  workflow_run:
+    workflows: ["Deploy Kitcham's Friends Json"]
+    branches: [main]
+    types: 
+      - completed
+
+jobs:
+  FTP-DEPLOY:
+    name: FTP upload
+    runs-on: ubuntu-latest
+
+    steps:
+    - name:
+      run: |
+        git pull origin master
+
+    - uses: actions/checkout@v2.1.0
+      with:
+        fetch-depth: 2
+    
+    - name: FTP-Deploy-Action
+      # Get ftp account info
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        ftp-server: ${{ secrets.FTP_ADDRESS }}
+        ftp-username: ${{ secrets.FTP_ACCOUNT }}
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: links/
+
+    # Log script
+    - name: Log 
+      run: | 
+        echo `date +"%Y-%m-%d %H:%M:%S"` updated > ftp.log
+
+    # Commit log into repo
+    - name: Commit
+      run: |
+        git config --global user.email tjj386@qq.com
+        git config --global user.name Kitcham
+        git add .
+        git commit -m "feat(log): update FTP log successfully" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
