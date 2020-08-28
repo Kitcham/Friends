@@ -4,7 +4,8 @@ on:
   # Trigger action when push and push-request
   workflow_run:
     workflows: ["Deploy Kitcham's Friends Json"]
-    branches: [main]
+    branches:  
+      - master
     types: 
       - completed
 
