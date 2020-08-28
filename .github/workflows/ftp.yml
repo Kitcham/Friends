@@ -1,9 +1,9 @@
-name: Upload Kitcham's Friends Json
+name: Upload
 
 on:
   # Trigger action when push and push-request
   workflow_run:
-    workflows: ["Deploy Kitcham's Friends Json"]
+    workflows: ["Deploy"]
     branches:  
       - master
     types: 
