@@ -15,10 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name:
-      run: |
-        git pull origin master
-
     - uses: actions/checkout@v2.1.0
       with:
         fetch-depth: 2
