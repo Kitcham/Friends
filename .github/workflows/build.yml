@@ -10,10 +10,15 @@ on:
     branches:
       - master
 
+  watch:
+    types: [started]
+   
+
 jobs:
   YML-2-JSON:
     name: Release json
     runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id  # star oneself to run
 
     steps:
     - uses: actions/checkout@v2.1.0
